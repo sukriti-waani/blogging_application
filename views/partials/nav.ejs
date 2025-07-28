@@ -1,0 +1,141 @@
+<nav
+  class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-2"
+  data-bs-theme="dark"
+>
+  <div class="container-fluid" style="max-width: 1200px">
+    <a
+      class="navbar-brand fw-bold text-uppercase fs-5"
+      href="#"
+      style="color: #00d9ff; letter-spacing: 0.5px"
+    >
+      🚀 Blogify
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <!-- Home -->
+        <li class="nav-item">
+          <a
+            class="nav-link active fw-semibold px-2"
+            aria-current="page"
+            href="#"
+            style="transition: 0.3s; font-size: 0.95rem"
+          >
+            Home
+          </a>
+        </li>
+
+        <% if(locals.user) { %>
+        <!-- Add Blog -->
+        <li class="nav-item">
+          <a
+            class="nav-link fw-semibold px-2"
+            href="/blog/add-new"
+            style="transition: 0.3s; font-size: 0.95rem"
+          >
+            ➕ Add Blog
+          </a>
+        </li>
+
+        <!-- User Dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle fw-bold text-info px-2"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            style="transition: 0.3s; font-size: 0.95rem"
+          >
+            👤 <%= locals.user.fullName %>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-dark animate__animated animate__fadeIn"
+          >
+            <li>
+              <a class="dropdown-item fw-bold text-danger" href="/user/logout"
+                >🚪 Logout</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <% } else { %>
+        <!-- Signup -->
+        <li class="nav-item">
+          <a
+            class="nav-link fw-semibold px-2"
+            href="/user/signup"
+            style="transition: 0.3s; font-size: 0.95rem"
+          >
+            ✍️ Create Account
+          </a>
+        </li>
+        <!-- Signin -->
+        <li class="nav-item">
+          <a
+            class="nav-link fw-semibold px-2"
+            href="/user/signin"
+            style="transition: 0.3s; font-size: 0.95rem"
+          >
+            🔑 Signin
+          </a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<% if(locals.error) { %>
+<div class="container mt-3" style="max-width: 800px">
+  <div
+    class="alert alert-danger fw-bold shadow-sm text-center py-2"
+    role="alert"
+  >
+    ⚠️ <%= locals.error %>
+  </div>
+</div>
+<% } %>
+
+<style>
+  /* Hover Effects */
+  .nav-link:hover {
+    color: #00d9ff !important;
+    transform: scale(1.03);
+    text-shadow: 0 0 4px rgba(0, 217, 255, 0.5);
+  }
+
+  .dropdown-menu {
+    border-radius: 6px;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .navbar {
+    background: #0d0d0d !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+</style>

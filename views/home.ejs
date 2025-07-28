@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+    <title>Homepage</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(to right, #f9f9f9, #eef3f8);
+        color: #2c3e50;
+      }
+
+      .card {
+        border: 2px solid #dee2e6; /* ✅ Added border */
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        border-color: #007bff; /* ✅ Border color change on hover */
+      }
+
+      .card img {
+        height: 180px;
+        object-fit: cover;
+        border-bottom: 2px solid #dee2e6;
+        transition: transform 0.4s ease;
+      }
+
+      .card:hover img {
+        transform: scale(1.05);
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #34495e;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+      }
+
+      .card:hover .card-title {
+        color: #007bff;
+      }
+
+      .btn-primary {
+        background: #007bff;
+        border: none;
+        font-weight: 500;
+        transition: background 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background: #0056b3;
+      }
+
+      /* ✅ Animation for grid items */
+      .col {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.6s forwards;
+      }
+
+      .col:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .col:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .col:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .col:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .col:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .col:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('partials/nav') %>
+
+    <div class="container mt-5">
+      <h1 class="text-center mb-4" style="font-weight: 600; color: #2c3e50">
+        📚 Explore Blogs
+      </h1>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% blogs.forEach((blog) => { %>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="<%= blog.coverImageURL %>"
+              class="card-img-top"
+              alt="Blog Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <a href="/blog/<%= blog._id %>" class="btn btn-primary w-100"
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <%- include('partials/scripts') %>
+  </body>
+</html>
